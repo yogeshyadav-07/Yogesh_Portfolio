@@ -1,1238 +1,598 @@
 <!DOCTYPE html>
-<html lang="en">
-
+<html lang="en" data-theme="light">
 <head>
-
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
-    <title>ML Engineer Portfolio | Yogesh Kumar Yadav</title>
-
-    <!-- Font Awesome -->
-    <link rel="stylesheet"
-        href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-
-    <!-- Google Font -->
-    <link
-        href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap"
-        rel="stylesheet">
-
-    <style>
-
-        :root {
-            --bg-color: #0b1120;
-            --bg-card: #171f30;
-            --bg-input: #1f293a;
-            --text-main: #f1f5f9;
-            --text-muted: #94a3b8;
-            --primary-color: #38bdf8;
-            --primary-hover: #0ea5e9;
-            --border-color: #334155;
-            --font-family: 'Inter', sans-serif;
-            --transition: all 0.3s ease;
-        }
-
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-            font-family: var(--font-family);
-            scroll-behavior: smooth;
-        }
-
-        body {
-            background-color: var(--bg-color);
-            color: var(--text-main);
-            overflow-x: hidden;
-            line-height: 1.6;
-        }
-
-        .container {
-            width: 100%;
-            max-width: 1200px;
-            margin: auto;
-            padding: 0 20px;
-        }
-
-        span.highlight {
-            color: var(--primary-color);
-        }
-
-        /* NAVBAR */
-
-        nav {
-            position: fixed;
-            top: 0;
-            width: 100%;
-            background: rgba(11, 17, 32, 0.9);
-            backdrop-filter: blur(10px);
-            border-bottom: 1px solid var(--border-color);
-            z-index: 1000;
-            padding: 1rem 0;
-        }
-
-        nav .container {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-        }
-
-        nav .logo {
-            color: white;
-            text-decoration: none;
-            font-size: 1.4rem;
-            font-weight: 700;
-        }
-
-        nav ul {
-            list-style: none;
-            display: flex;
-            gap: 1.5rem;
-        }
-
-        nav ul li a {
-            text-decoration: none;
-            color: var(--text-muted);
-            transition: var(--transition);
-        }
-
-        nav ul li a:hover {
-            color: var(--primary-color);
-        }
-
-        /* SECTION */
-
-        section {
-            padding: 100px 0;
-        }
-
-        .section-title {
-            text-align: center;
-            font-size: 2.5rem;
-            margin-bottom: 1rem;
-        }
-
-        .section-subtitle {
-            text-align: center;
-            color: var(--text-muted);
-            margin-bottom: 4rem;
-        }
-
-        /* BUTTON */
-
-        .btn {
-            display: inline-block;
-            padding: 0.8rem 1.5rem;
-            border-radius: 6px;
-            text-decoration: none;
-            transition: var(--transition);
-            font-weight: 600;
-            cursor: pointer;
-        }
-
-        .btn-primary {
-            background: var(--primary-color);
-            color: #0f172a;
-        }
-
-        .btn-primary:hover {
-            background: var(--primary-hover);
-        }
-
-        .btn-secondary {
-            border: 1px solid var(--border-color);
-            color: white;
-        }
-
-        .btn-secondary:hover {
-            background: var(--bg-card);
-        }
-
-        /* HERO */
-
-        #home {
-            padding-top: 150px;
-        }
-
-        .hero-wrapper {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            align-items: center;
-            gap: 50px;
-        }
-
-        .hero-content h3 {
-            color: var(--primary-color);
-        }
-
-        .hero-content h1 {
-            font-size: 3.5rem;
-            margin: 1rem 0;
-        }
-
-        .hero-content h2 {
-            color: var(--text-muted);
-            margin-bottom: 1rem;
-        }
-
-        .hero-content p {
-            color: var(--text-muted);
-            margin-bottom: 2rem;
-            max-width: 500px;
-        }
-
-        .hero-btns {
-            display: flex;
-            gap: 1rem;
-        }
-
-        .hero-image-container {
-            display: flex;
-            justify-content: center;
-            position: relative;
-        }
-
-        .profile-img {
-            width: 320px;
-            height: 320px;
-            border-radius: 50%;
-            object-fit: cover;
-            border: 4px solid var(--bg-card);
-            z-index: 2;
-        }
-
-        .image-accent {
-            position: absolute;
-            width: 340px;
-            height: 340px;
-            border: 2px dashed var(--border-color);
-            border-radius: 50%;
-            animation: rotate 20s linear infinite;
-        }
-
-        @keyframes rotate {
-            to {
-                transform: rotate(360deg);
-            }
-        }
-
-        /* ABOUT */
-
-        #about {
-            background: var(--bg-card);
-        }
-
-        .about-text {
-            max-width: 800px;
-            margin: auto;
-            text-align: center;
-            color: var(--text-muted);
-        }
-
-        /* SKILLS */
-
-        .skills-grid,
-        .projects-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-            gap: 1.5rem;
-        }
-
-        .skill-category,
-        .project-card {
-            background: var(--bg-card);
-            padding: 2rem;
-            border-radius: 12px;
-            border: 1px solid var(--border-color);
-            transition: var(--transition);
-        }
-
-        .skill-category:hover,
-        .project-card:hover {
-            transform: translateY(-5px);
-            border-color: var(--primary-color);
-        }
-
-        .skill-category h3,
-        .project-card h3 {
-            margin-bottom: 1rem;
-        }
-
-        .skill-item {
-            padding: 0.6rem 0;
-            border-bottom: 1px solid rgba(255,255,255,0.05);
-        }
-
-        .project-icon {
-            font-size: 2rem;
-            color: var(--primary-color);
-            margin-bottom: 1rem;
-        }
-
-        .project-card p {
-            color: var(--text-muted);
-            margin-bottom: 1rem;
-        }
-
-        .project-tech {
-            display: flex;
-            flex-wrap: wrap;
-            gap: 0.5rem;
-            margin-bottom: 1rem;
-        }
-
-        .tech-tag {
-            background: rgba(56, 189, 248, 0.1);
-            color: var(--primary-color);
-            padding: 0.3rem 0.7rem;
-            border-radius: 50px;
-            font-size: 0.8rem;
-        }
-
-        /* CONTACT */
-
-        #contact {
-            background: var(--bg-card);
-        }
-
-        .contact-wrapper {
-            display: grid;
-            grid-template-columns: 1fr 1.5fr;
-            gap: 50px;
-        }
-
-        .contact-info p {
-            color: var(--text-muted);
-            margin-bottom: 2rem;
-        }
-
-        .contact-details {
-            list-style: none;
-            margin-bottom: 2rem;
-        }
-
-        .contact-details li {
-            margin-bottom: 1rem;
-            display: flex;
-            gap: 1rem;
-            align-items: center;
-        }
-
-        .contact-details i {
-            color: var(--primary-color);
-        }
-
-        .social-links {
-            display: flex;
-            gap: 1rem;
-        }
-
-        .social-icon {
-            width: 45px;
-            height: 45px;
-            background: var(--bg-input);
-            border: 1px solid var(--border-color);
-            border-radius: 8px;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            color: white;
-            text-decoration: none;
-            transition: var(--transition);
-        }
-
-        .social-icon:hover {
-            background: var(--primary-color);
-            color: #0f172a;
-        }
-
-        .contact-form {
-            background: var(--bg-color);
-            padding: 2rem;
-            border-radius: 12px;
-            border: 1px solid var(--border-color);
-        }
-
-        .form-group {
-            margin-bottom: 1.5rem;
-        }
-
-        .form-label {
-            display: block;
-            margin-bottom: 0.5rem;
-        }
-
-        .form-control {
-            width: 100%;
-            padding: 0.8rem 1rem;
-            border-radius: 6px;
-            border: 1px solid var(--border-color);
-            background: var(--bg-input);
-            color: white;
-        }
-
-        textarea.form-control {
-            height: 150px;
-            resize: vertical;
-        }
-
-        .form-control:focus {
-            outline: none;
-            border-color: var(--primary-color);
-        }
-
-        /* FOOTER */
-
-        footer {
-            text-align: center;
-            padding: 2rem 0;
-            border-top: 1px solid var(--border-color);
-            color: var(--text-muted);
-        }
-
-        /* RESPONSIVE */
-
-        @media(max-width: 992px) {
-
-            .hero-wrapper,
-            .contact-wrapper {
-                grid-template-columns: 1fr;
-                text-align: center;
-            }
-
-            .hero-btns,
-            .social-links {
-                justify-content: center;
-            }
-
-            .contact-details li {
-                justify-content: center;
-            }
-
-            .hero-image-container {
-                order: -1;
-            }
-
-        }
-
-        @media(max-width: 600px) {
-
-            nav ul {
-                display: none;
-            }
-
-            .hero-content h1 {
-                font-size: 2.3rem;
-            }
-
-            .profile-img,
-            .image-accent {
-                width: 260px;
-                height: 260px;
-            }
-
-        }
-                  /* SUCCESS POPUP */
-
-        .success-popup {
-
-    position: fixed;
-    top: 0;
-    left: 0;
-
-    width: 100%;
-    height: 100%;
-
-    background: rgba(0,0,0,0.6);
-
-    display: none;
-    justify-content: center;
-    align-items: center;
-
-    z-index: 9999;
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Yogesh Kumar Yadav | AI/ML & Data Science Portfolio</title>
+<meta name="description" content="Portfolio of Yogesh Kumar Yadav, a B.Tech CSE (Data Science) student focused on AI/ML, Data Science, Generative AI, LLM applications and practical software development.">
+<meta property="og:type" content="website">
+<meta property="og:title" content="Yogesh Kumar Yadav | AI/ML & Data Science Portfolio">
+<meta property="og:description" content="B.Tech CSE (Data Science) student building RAG apps, LLM tools, AI agents and ML applications.">
+<meta property="og:image" content="https://avatars.githubusercontent.com/u/215409068?v=4">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Sora:wght@500;600;700&display=swap" rel="stylesheet">
+<style>
+:root{--bg:#070b16;--bg2:#0c1222;--card:rgba(255,255,255,.04);--line:rgba(148,180,255,.14);--tx:#e6ecf8;--mut:#93a0ba;--ac:#22d3ee;--ac2:#818cf8;--glass:rgba(7,11,22,.72);--sh:0 10px 30px rgba(0,0,0,.35)}
+[data-theme=light]{--bg:#f5f7fc;--bg2:#eaeef8;--card:#fff;--line:rgba(30,50,100,.14);--tx:#111a30;--mut:#55627d;--ac:#0891b2;--ac2:#4f46e5;--glass:rgba(245,247,252,.8);--sh:0 10px 30px rgba(30,50,100,.12)}
+*{box-sizing:border-box;margin:0}
+html{scroll-behavior:smooth;scroll-padding-top:76px}
+body{font:16px/1.65 Inter,system-ui,sans-serif;background:var(--bg);color:var(--tx);overflow-x:hidden;background-image:radial-gradient(60rem 30rem at 85% -5%,rgba(129,140,248,.14),transparent),radial-gradient(40rem 25rem at -5% 10%,rgba(34,211,238,.1),transparent);background-repeat:no-repeat}
+h1,h2,h3{font-family:Sora,Inter,sans-serif;line-height:1.2}
+a{color:inherit;text-decoration:none}
+svg.i{width:1.1em;height:1.1em;fill:none;stroke:currentColor;stroke-width:2;stroke-linecap:round;stroke-linejoin:round;flex:none}
+.wrap{max-width:1120px;margin:0 auto;padding:0 22px}
+section{padding:88px 0}
+h2{font-size:clamp(1.7rem,3.5vw,2.4rem);margin-bottom:12px}
+.lead{color:var(--mut);max-width:62ch;margin-bottom:36px}
+:focus-visible{outline:2px solid var(--ac);outline-offset:3px}
+#prog{position:fixed;top:0;left:0;height:3px;width:0;background:linear-gradient(90deg,var(--ac),var(--ac2));z-index:100}
+/* nav */
+header{position:sticky;top:0;z-index:50;transition:.3s}
+header.s{background:var(--glass);backdrop-filter:blur(14px);-webkit-backdrop-filter:blur(14px);border-bottom:1px solid var(--line)}
+nav{display:flex;align-items:center;justify-content:space-between;height:68px}
+.logo{font:700 1.35rem Sora;letter-spacing:-.02em}.logo b{color:var(--ac)}
+.links{display:flex;gap:4px}
+.links a{padding:7px 10px;border-radius:99px;color:var(--mut);font-size:.93rem;transition:.2s}
+.links a:hover{color:var(--tx)}.links a.on{color:var(--tx);background:var(--card);box-shadow:inset 0 0 0 1px var(--line)}
+.nr{display:flex;gap:8px;align-items:center}
+.ib{width:40px;height:40px;border-radius:12px;border:1px solid var(--line);background:var(--card);color:var(--tx);display:grid;place-items:center;cursor:pointer;transition:.2s}
+.ib:hover{border-color:var(--ac);color:var(--ac)}
+#menu{display:none}
+/* buttons */
+.btn{display:inline-flex;align-items:center;gap:8px;padding:12px 20px;border-radius:12px;font-weight:600;font-size:.95rem;border:1px solid var(--line);background:var(--card);color:var(--tx);cursor:pointer;font-family:inherit;transition:.25s}
+.btn:hover{transform:translateY(-2px);border-color:var(--ac);box-shadow:0 8px 22px rgba(34,211,238,.15)}
+.btn.p{background:linear-gradient(135deg,var(--ac),var(--ac2));color:#04101c;border:0}
+.btn.p:hover{box-shadow:0 10px 26px rgba(34,211,238,.35)}
+.btn.p svg{transition:transform .25s}.btn.p:hover svg{transform:translateY(2px)}
+.btn.sm{padding:8px 14px;font-size:.85rem;border-radius:10px}
+/* hero */
+.hero{padding:70px 0 50px}
+.hg{display:grid;grid-template-columns:1.25fr .75fr;gap:48px;align-items:center}
+.badge{display:inline-flex;align-items:center;gap:9px;padding:6px 14px;border-radius:99px;border:1px solid var(--line);background:var(--card);font-size:.88rem;color:var(--mut);margin-bottom:22px}
+.dot{width:8px;height:8px;border-radius:50%;background:#34d399;box-shadow:0 0 0 0 rgba(52,211,153,.6);animation:pl 2s infinite}
+@keyframes pl{70%{box-shadow:0 0 0 8px rgba(52,211,153,0)}100%{box-shadow:0 0 0 0 rgba(52,211,153,0)}}
+h1{font-size:clamp(2.2rem,5.2vw,3.6rem);letter-spacing:-.03em;margin-bottom:16px}
+.type{font:600 1.3rem Sora;color:var(--ac);min-height:1.9em;margin-bottom:12px}
+.type::after{content:"";display:inline-block;width:2px;height:1.1em;background:var(--ac);margin-left:3px;vertical-align:-.15em;animation:bl 1s steps(1) infinite}
+@keyframes bl{50%{opacity:0}}
+.intro{color:var(--mut);max-width:56ch;margin-bottom:26px}
+.row{display:flex;flex-wrap:wrap;gap:12px;align-items:center}
+.soc{display:flex;gap:10px;margin-top:24px}
+.stats{display:grid;grid-template-columns:repeat(3,1fr);gap:12px;margin-top:34px;max-width:520px}
+.stat{padding:14px 16px;border-radius:14px;background:var(--card);border:1px solid var(--line)}
+.stat b{display:block;font:600 1.1rem Sora}.stat span{font-size:.82rem;color:var(--mut)}
+.pic{position:relative;width:min(340px,80%);aspect-ratio:1;margin:0 auto;justify-self:center}
+.pic::before{content:"";position:absolute;inset:-6px;border-radius:38%;background:conic-gradient(from 0deg,var(--ac),var(--ac2),#c084fc,var(--ac));animation:sp 9s linear infinite;filter:blur(.5px)}
+.pic::after{content:"";position:absolute;inset:-6px;border-radius:38%;box-shadow:0 0 50px rgba(34,211,238,.25);pointer-events:none}
+@keyframes sp{to{transform:rotate(360deg)}}
+.pic img{position:relative;z-index:1;width:100%;height:100%;object-fit:cover;border-radius:36%;border:5px solid var(--bg);box-shadow:var(--sh);background:var(--bg2)}
+/* about */
+.ag{display:grid;grid-template-columns:1.4fr 1fr;gap:36px;align-items:start}
+.ag p{color:var(--mut);margin-bottom:14px}
+.tags{display:flex;flex-wrap:wrap;gap:8px;margin-top:6px}
+.tag{padding:5px 12px;border-radius:99px;font-size:.84rem;background:var(--card);border:1px solid var(--line)}
+.info{padding:24px;border-radius:18px;background:var(--card);border:1px solid var(--line);box-shadow:var(--sh)}
+.info div{padding:12px 0;border-bottom:1px solid var(--line)}.info div:last-child{border:0}
+.info small{display:block;color:var(--mut);font-size:.82rem}
+/* skills */
+.sg{display:grid;grid-template-columns:repeat(auto-fit,minmax(250px,1fr));gap:18px}
+.sc{padding:22px;border-radius:18px;background:var(--card);border:1px solid var(--line);transition:.25s}
+.sc:hover{border-color:rgba(34,211,238,.4)}
+.sc h3{font-size:1.02rem;margin-bottom:14px;display:flex;gap:10px;align-items:center}
+.sc h3 svg{color:var(--ac)}
+.chips{display:flex;flex-wrap:wrap;gap:8px}
+.chip{padding:5px 12px;border-radius:8px;font-size:.85rem;background:var(--bg2);border:1px solid var(--line);color:var(--tx)}
+/* projects */
+.filters{display:flex;flex-wrap:wrap;gap:8px;margin-bottom:26px}
+.f{padding:8px 18px;border-radius:99px;border:1px solid var(--line);background:var(--card);color:var(--mut);cursor:pointer;font:500 .9rem Inter;transition:.2s}
+.f:hover{color:var(--tx)}.f.on{background:linear-gradient(135deg,var(--ac),var(--ac2));color:#04101c;border-color:transparent}
+.pg{display:grid;grid-template-columns:repeat(auto-fill,minmax(320px,1fr));gap:20px}
+.pc{position:relative;display:flex;flex-direction:column;padding:24px;border-radius:18px;background:var(--card);border:1px solid var(--line);transition:transform .3s,border-color .3s,box-shadow .3s}
+.pc:hover{transform:translateY(-6px);border-color:rgba(34,211,238,.5);box-shadow:0 14px 36px rgba(34,211,238,.12)}
+.pc.hide{display:none}
+.pi{width:48px;height:48px;border-radius:14px;display:grid;place-items:center;background:linear-gradient(135deg,rgba(34,211,238,.18),rgba(129,140,248,.18));color:var(--ac);margin-bottom:16px;transition:transform .3s}
+.pi svg{width:24px;height:24px}
+.pc:hover .pi{transform:translateY(-3px) rotate(-6deg)}
+.feat{position:absolute;top:20px;right:20px;font-size:.78rem;padding:3px 10px;border-radius:99px;background:rgba(129,140,248,.18);color:var(--ac2);border:1px solid rgba(129,140,248,.35)}
+.pc h3{font-size:1.1rem;margin-bottom:8px}
+.pc p{color:var(--mut);font-size:.93rem;margin-bottom:16px;flex:1}
+.pc .chips{margin-bottom:18px}.pc .chip{font-size:.78rem;padding:3px 10px}
+.pc .row{gap:10px}
+.more{margin-top:32px;text-align:center}
+/* journey */
+.tl{position:relative;display:grid;gap:18px;padding-left:28px;max-width:760px}
+.tl::before{content:"";position:absolute;left:6px;top:8px;bottom:8px;width:2px;background:linear-gradient(var(--ac),var(--ac2),transparent)}
+.ti{position:relative;padding:22px;border-radius:16px;background:var(--card);border:1px solid var(--line)}
+.ti::before{content:"";position:absolute;left:-28px;top:28px;width:14px;height:14px;border-radius:50%;background:var(--bg);border:3px solid var(--ac)}
+.ti time{font-size:.85rem;color:var(--ac)}
+.ti h3{font-size:1.1rem;margin:4px 0}.ti p,.ti li{color:var(--mut);font-size:.93rem}
+.ti ul{padding-left:18px;margin-top:8px}
+/* contact */
+.cg{display:grid;grid-template-columns:1fr 1.1fr;gap:28px}
+.cl{display:grid;gap:12px;align-content:start}
+.cc{display:flex;gap:14px;align-items:center;padding:16px 18px;border-radius:14px;background:var(--card);border:1px solid var(--line);transition:.25s;overflow-wrap:anywhere}
+.cc:hover{border-color:var(--ac);transform:translateX(4px)}
+.cc svg{color:var(--ac);width:22px;height:22px}
+.cc small{display:block;color:var(--mut);font-size:.8rem}
+form{padding:26px;border-radius:18px;background:var(--card);border:1px solid var(--line);display:grid;gap:14px}
+label{font-size:.88rem;color:var(--mut);display:grid;gap:6px}
+input,textarea{font:inherit;color:var(--tx);background:var(--bg2);border:1px solid var(--line);border-radius:10px;padding:11px 13px;width:100%;transition:.2s}
+input:focus,textarea:focus{outline:0;border-color:var(--ac);box-shadow:0 0 0 3px rgba(34,211,238,.15)}
+textarea{min-height:120px;resize:vertical}
+.two{display:grid;grid-template-columns:1fr 1fr;gap:14px}
+footer{border-top:1px solid var(--line);padding:30px 0;color:var(--mut);font-size:.9rem}
+.fr{display:flex;flex-wrap:wrap;justify-content:space-between;align-items:center;gap:16px}
+.fr .soc{margin:0}
+#top{position:fixed;right:20px;bottom:20px;opacity:0;pointer-events:none;transition:.3s;z-index:40}
+#top.v{opacity:1;pointer-events:auto}
+#toast{position:fixed;left:50%;bottom:28px;transform:translate(-50%,30px);opacity:0;padding:12px 20px;border-radius:12px;background:var(--bg2);border:1px solid var(--ac);box-shadow:var(--sh);z-index:200;transition:.35s;max-width:90vw;font-size:.92rem}
+#toast.v{opacity:1;transform:translate(-50%,0)}
+.rv{opacity:0;transform:translateY(18px);transition:opacity .6s,transform .6s}.rv.in{opacity:1;transform:none}
+@media(max-width:860px){
+ .hg,.ag,.cg{grid-template-columns:1fr}
+ .pic{order:-1;width:min(240px,65%)}
+ #menu{display:grid}
+ .links{position:absolute;top:68px;left:0;right:0;flex-direction:column;padding:12px 22px 18px;background:var(--bg2);border-bottom:1px solid var(--line);display:none}
+ .links.o{display:flex}
+ .links a{padding:12px}
+ section{padding:64px 0}
 }
-
-.popup-box {
-
-    background: #171f30;
-    padding: 2rem;
-    border-radius: 15px;
-
-    text-align: center;
-
-    width: 320px;
-
-    border: 1px solid #334155;
-
-    animation: popupAnim 0.3s ease;
+@media(max-width:520px){.pg{grid-template-columns:1fr}.two{grid-template-columns:1fr}.stats{gap:8px}.stat{padding:12px}}
+@media(prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important}html{scroll-behavior:auto}.rv{opacity:1;transform:none}}
+.sub{font:500 .95rem Sora;color:var(--mut);margin-bottom:10px}
+.tl.wide{max-width:900px}
+.xh{display:flex;gap:16px;align-items:center;margin-bottom:12px}.xh .pi{margin:0;flex:none}
+.inst{color:var(--tx)!important;font-weight:500}
+.proj{color:var(--ac2)!important;font-weight:500;margin-bottom:6px}
+.ti .chips{margin-top:14px}.ti .chip{font-size:.78rem;padding:3px 10px}
+.ti{transition:border-color .3s,transform .3s}.ti:hover{border-color:rgba(34,211,238,.4);transform:translateY(-3px)}
+.ach .sc:hover{transform:translateY(-4px);box-shadow:0 12px 30px rgba(34,211,238,.1)}
+.ach .sc p{color:var(--mut);font-size:.92rem}.ach h3{display:block!important;font-size:1.02rem;margin-bottom:4px}
+.em{font-size:1.7rem;margin-bottom:12px;color:var(--ac);height:1.9rem}.em svg{width:1.7rem;height:1.7rem}
+.sc.hl{background:linear-gradient(135deg,rgba(34,211,238,.1),rgba(129,140,248,.12));border-color:rgba(129,140,248,.4)}
+@media(max-width:600px){.tl{padding-left:0}.tl::before,.ti::before{display:none}.xh .pi{width:42px;height:42px}}
+#net{position:absolute;inset:0;width:100%;height:100%;opacity:.55;pointer-events:none}
+.hero{position:relative;overflow:hidden}.hero .wrap{position:relative;z-index:1}
+.pc,.sc,.cc,.ti,.info{background-image:radial-gradient(320px circle at var(--mx,-200px) var(--my,-200px),rgba(34,211,238,.11),transparent 60%)}
+.sl{position:relative;overflow:hidden;border-radius:20px;border:1px solid var(--line);background:var(--card);margin-bottom:38px;box-shadow:var(--sh)}
+.st{display:flex;transition:transform .6s cubic-bezier(.2,.7,.2,1)}
+.sd{min-width:100%;display:grid;grid-template-columns:1.05fr 1fr}
+.smed{position:relative;min-height:300px;display:grid;place-items:center;background:linear-gradient(135deg,rgba(34,211,238,.2),rgba(129,140,248,.28));overflow:hidden}
+.smed img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover}
+.smed .ph{width:84px;height:84px;border-radius:24px;display:grid;place-items:center;background:var(--glass);border:1px solid var(--line);color:var(--ac)}.smed .ph svg{width:38px;height:38px}
+.sb{padding:36px 40px 52px;display:flex;flex-direction:column;justify-content:center;gap:12px}
+.sb h3{font-size:1.4rem}.sb p{color:var(--mut)}.sb .row{margin-top:6px}
+.sa{position:absolute;top:50%;transform:translateY(-50%);background:var(--glass);backdrop-filter:blur(8px)}.sa.prev{left:12px}.sa.next{right:12px}
+.sdots{position:absolute;bottom:16px;right:40px;display:flex;gap:8px}
+.sdots button{width:9px;height:9px;border-radius:99px;border:0;background:var(--line);cursor:pointer;padding:0;transition:.3s}.sdots button.on{width:26px;background:var(--ac)}
+@media(max-width:760px){.sd{grid-template-columns:1fr}.smed{min-height:190px}.sb{padding:24px 22px 54px}.sdots{left:22px;right:auto}.sa{top:95px}}
+/* responsive hardening */
+html{-webkit-text-size-adjust:100%;text-size-adjust:100%}
+.hg>*,.ag>*,.cg>*,.sd>*,.pc,.sc,.cc{min-width:0}
+.cc,.chip,.tag,.pc p,.sb p{overflow-wrap:anywhere}
+.f,.btn,.ib{min-height:40px}
+@media(min-width:1500px){.wrap{max-width:1280px}.pg{grid-template-columns:repeat(3,1fr)}}
+@media(max-width:1000px){
+ #menu{display:grid}
+ .links{position:absolute;top:68px;left:0;right:0;flex-direction:column;padding:12px 22px 18px;background:var(--bg2);border-bottom:1px solid var(--line);display:none}
+ .links.o{display:flex}.links a{padding:12px}
 }
-
-.popup-box i {
-
-    font-size: 3rem;
-    color: #38bdf8;
-
-    margin-bottom: 1rem;
-}
-
-.popup-box h3 {
-
-    margin-bottom: 0.5rem;
-}
-
-.popup-box p {
-
-    color: #94a3b8;
-    margin-bottom: 1.5rem;
-}
-
-.popup-box button {
-
-    padding: 0.7rem 1.5rem;
-
-    border: none;
-    border-radius: 8px;
-
-    background: #38bdf8;
-
-    color: #0b1120;
-
-    font-weight: 600;
-
-    cursor: pointer;
-}
-
-@keyframes popupAnim {
-
-    from {
-        transform: scale(0.8);
-        opacity: 0;
-    }
-
-    to {
-        transform: scale(1);
-        opacity: 1;
-    }
-}
-
-    </style>
-
+@media(max-width:560px){.hero .row .btn{flex:1 1 100%;justify-content:center}.hero{padding-top:36px}}
+@media(max-height:480px) and (orientation:landscape){section{padding:56px 0}.hero{padding-top:30px}}
+.art{width:100%;padding:24px 22px;display:flex;flex-direction:column;gap:14px;align-items:center;justify-content:center;min-height:240px}
+.art .cap{color:var(--mut);font-size:.85rem;text-align:center;min-height:2.6em;max-width:34ch}
+.chart{cursor:pointer}.chart svg{width:min(100%,300px);height:auto}
+.chart .pr{padding:7px 14px;border-radius:99px;background:var(--glass);border:1px solid var(--line);font-size:.85rem;color:var(--mut)}
+.chart rect{fill:var(--ac);opacity:.75;transition:.3s}.chart rect:hover{fill:var(--ac2);opacity:1;transform:translateY(-4px)}
+.chart .ln{fill:none;stroke:var(--ac2);stroke-width:4;stroke-linecap:round;stroke-linejoin:round;stroke-dasharray:400;stroke-dashoffset:400;transition:stroke-dashoffset .9s}
+.chart.line .ln{stroke-dashoffset:0}.chart.line .bars{opacity:.18}.chart .bars{transition:opacity .4s}
+.fl{display:flex;flex-wrap:wrap;gap:8px;align-items:center;justify-content:center}
+.fl i{font-style:normal;color:var(--mut)}
+.fl button{font:500 .85rem Inter,sans-serif;padding:9px 14px;border-radius:12px;border:1px solid var(--line);background:var(--glass);color:var(--tx);cursor:pointer;transition:.25s}
+.fl button:hover,.fl button.on{border-color:var(--ac);background:linear-gradient(135deg,rgba(34,211,238,.2),rgba(129,140,248,.22));transform:translateY(-2px)}
+.agent{align-items:stretch;max-width:340px;margin:0 auto}
+.bb{padding:10px 14px;border-radius:14px;font-size:.88rem;max-width:88%;border:1px solid var(--line)}
+.bb.u{align-self:flex-end;background:linear-gradient(135deg,var(--ac),var(--ac2));color:#04101c;border:0}
+.bb.a{align-self:flex-start;background:var(--glass)}
+.qs{display:flex;flex-wrap:wrap;gap:8px}
+.qs button{font:500 .8rem Inter,sans-serif;padding:7px 12px;border-radius:99px;border:1px solid var(--line);background:var(--card);color:var(--tx);cursor:pointer;transition:.2s}
+.qs button:hover{border-color:var(--ac);color:var(--ac)}
+.art{padding:24px 58px}
+@media(max-width:380px){.art{padding:20px 52px}}
+</style>
 </head>
-
 <body>
-
-    <!-- NAVBAR -->
-
-    <nav>
-
-        <div class="container">
-
-            <a href="#" class="logo">
-                ML<span class="highlight">.</span>Engineer
-            </a>
-
-            <ul>
-                <li><a href="#home">Home</a></li>
-                <li><a href="#about">About</a></li>
-                <li><a href="#skills">Skills</a></li>
-                <li><a href="#projects">Projects</a></li>
-                <li><a href="#contact">Contact</a></li>
-            </ul>
-
-        </div>
-
-    </nav>
-
-    <!-- HERO -->
-
-    <section id="home">
-
-        <div class="container">
-
-            <div class="hero-wrapper">
-
-                <div class="hero-content">
-
-                    <h3>Available for Opportunities</h3>
-
-                    <h1 id="typewriter">Yogesh Kumar Yadav</h1>
-
-                    <h2>Machine Learning Engineer</h2>
-
-                    <p>
-                        Passionate about AI, Machine Learning,
-                        RAG systems, LLMs, and intelligent software solutions.
-                    </p>
-
-                    <div class="hero-btns">
-
-                        <a href="#projects" class="btn btn-primary">
-                            Explore Projects
-                        </a>
-
-                        <a href="Resume_ml yogesh.pdf"
-                            download
-                            class="btn btn-secondary">
-
-                            <i class="fas fa-download"></i>
-                            Download CV
-
-                        </a>
-
-                    </div>
-
-                </div>
-
-                <div class="hero-image-container">
-
-                    <img src="yogesh yadav img.png"
-                        alt="Yogesh Kumar Yadav"
-                        class="profile-img">
-
-                    <div class="image-accent"></div>
-
-                </div>
-
-            </div>
-
-        </div>
-
-    </section>
-
-    <!-- ABOUT -->
-
-    <!-- ========================= -->
-<!-- UPDATED PROFESSIONAL SUMMARY -->
-<!-- REPLACE OLD #about SECTION -->
-<!-- ========================= -->
-
-<section id="about">
-
-    <div class="container">
-
-        <h2 class="section-title">Professional Summary</h2>
-
-        <div class="about-text">
-
-            <p>
-                I am a passionate and self-driven B.Tech Data Science student
-                with strong interest in Machine Learning, Artificial Intelligence,
-                and modern software development. Skilled in building ML models,
-                RAG-based applications, LLM-powered systems, and responsive web applications.
-                
-            </p>
-
-            <br>
-
-            <p>
-                I have hands-on experience working with AI tools, APIs,
-                and data-driven applications. My technical
-                knowledge includes Machine Learning, basic Deep Learning,
-                Prompt Engineering, AI Agents, SQL, Power BI, and Data Visualization.
-                I enjoy solving real-world problems through intelligent systems
-                and continuously learning emerging technologies in AI and software engineering.
-            </p>
-
-            <br>
-
-            <p>
-                Currently seeking internship and entry-level opportunities
-                where I can contribute my technical skills, improve my industry
-                experience, and grow as an AI & Software Engineer in a collaborative environment.
-            </p>
-
-        </div>
-
-    </div>
-
-</section>
-
-    <!-- SKILLS -->
-<!-- ========================= -->
-<!-- UPDATED SKILLS SECTION -->
-<!-- REPLACE OLD #skills SECTION -->
-<!-- ========================= -->
-
-<section id="skills">
-
-    <div class="container">
-
-        <h2 class="section-title">Technical Expertise</h2>
-
-        <p class="section-subtitle">
-            My current technical skills, tools, and development experience.
-        </p>
-
-        <div class="skills-grid">
-
-            <!-- WEB DEVELOPMENT -->
-
-            <!-- <div class="skill-category">
-
-                <h3>
-                    <i class="fas fa-code"></i>
-                    Web Development
-                </h3>
-
-                <div class="skill-item">HTML5</div>
-                <div class="skill-item">CSS3</div>
-                <div class="skill-item">JavaScript</div>
-                <div class="skill-item">Responsive Web Design</div>
-                <div class="skill-item">Frontend Development</div>
-
-            </div> -->
-
-            <!-- ML & AI -->
-
-            <div class="skill-category">
-
-                <h3>
-                    <i class="fas fa-brain"></i>
-                    Machine Learning & AI
-                </h3>
-
-                <div class="skill-item">Machine Learning Models</div>
-                <div class="skill-item">Deep Learning (Basics)</div>
-                <div class="skill-item">RAG Systems</div>
-                <div class="skill-item">Large Language Models (LLMs)</div>
-                <div class="skill-item">AI Agents & Tools</div>
-                <div class="skill-item">Prompt Engineering</div>
-
-            </div>
-
-            <!-- PROGRAMMING -->
-
-            <div class="skill-category">
-
-                <h3>
-                    <i class="fas fa-laptop-code"></i>
-                    Programming Languages
-                </h3>
-
-                <div class="skill-item">Python</div>
-                <div class="skill-item">C++</div>
-                <div class="skill-item">SQL</div>
-                <div class="skill-item">Basic Data Structures & Algorithms</div>
-
-            </div>
-
-            <!-- TOOLS -->
-
-            <div class="skill-category">
-
-                <h3>
-                    <i class="fas fa-tools"></i>
-                    Tools & Platforms
-                </h3>
-
-                <div class="skill-item">VS Code</div>
-                <div class="skill-item">Jupyter Notebook</div>
-                <div class="skill-item">Power BI</div>
-                <div class="skill-item">Git & GitHub</div>
-                <div class="skill-item">OpenAI API</div>
-
-            </div>
-
-            <!-- DATABASE -->
-
-            <div class="skill-category">
-
-                <h3>
-                    <i class="fas fa-database"></i>
-                    Database & Backend
-                </h3>
-
-                <div class="skill-item">MySQL</div>
-                <div class="skill-item">Database Design</div>
-                <div class="skill-item">Basic REST APIs</div>
-                <div class="skill-item">Backend Logic</div>
-
-            </div>
-
-            <!-- SOFT SKILLS -->
-
-            <div class="skill-category">
-
-                <h3>
-                    <i class="fas fa-user-gear"></i>
-                    Professional Skills
-                </h3>
-
-                <div class="skill-item">Problem Solving</div>
-                <div class="skill-item">Logical Thinking</div>
-                <div class="skill-item">Team Collaboration</div>
-                <div class="skill-item">Quick Learning</div>
-                <div class="skill-item">Project Development</div>
-
-            </div>
-
-        </div>
-
-    </div>
-
-</section>
-    <!-- PROJECTS -->
-
-    <!-- ========================= -->
-<!-- UPDATED PROJECT SECTION -->
-<!-- REPLACE OLD #projects SECTION -->
-<!-- ========================= -->
-
-<section id="projects">
-
-    <div class="container">
-
-        <h2 class="section-title">Featured Projects</h2>
-
-        <p class="section-subtitle">
-            Real-world AI, Machine Learning, and software projects showcasing
-            problem-solving, development, and engineering skills.
-        </p>
-
-        <div class="projects-grid">
-
-            <!-- PROJECT 1 -->
-
-            <div class="project-card">
-
-                <i class="fas fa-brain project-icon"></i>
-
-                <h3>Machine Learning Prediction Models</h3>
-
-                <p>
-                    Built multiple Machine Learning models for prediction and
-                    classification tasks using real-world datasets. Implemented
-                    data preprocessing, feature engineering, model training,
-                    evaluation, and visualization workflows using Python libraries.
-                </p>
-
-                <div class="project-tech">
-
-                    <span class="tech-tag">Python</span>
-                    <span class="tech-tag">Scikit-learn</span>
-                    <span class="tech-tag">Pandas</span>
-                    <span class="tech-tag">NumPy</span>
-                    <span class="tech-tag">Matplotlib</span>
-
-                </div>
-
-                <a href="https://github.com/yogeshyadav-07"
-                    target="_blank"
-                    class="btn btn-secondary">
-
-                    View Project
-
-                </a>
-
-            </div>
-
-            <!-- PROJECT 2 -->
-
-            <div class="project-card">
-
-                <i class="fas fa-robot project-icon"></i>
-
-                <h3>RAG Based PDF Question Answer System</h3>
-
-                <p>
-                    Developed a Retrieval-Augmented Generation (RAG) system capable
-                    of answering user questions from uploaded PDF documents.
-                    Integrated embeddings, vector databases, semantic search,
-                    and LLM-powered response generation for intelligent document interaction.
-                </p>
-
-                <div class="project-tech">
-
-                    <span class="tech-tag">LangChain</span>
-                    <span class="tech-tag">RAG</span>
-                    <span class="tech-tag">LLM</span>
-                    <span class="tech-tag">Vector DB</span>
-                    <span class="tech-tag">Python</span>
-
-                </div>
-
-                <a href="https://huggingface.co/spaces/yogesh-yadav/omni-agent-pro"
-                    target="_blank"
-                    class="btn btn-secondary">
-
-                    View Project
-
-                </a>
-
-            </div>
-
-            <!-- PROJECT 3 -->
-
-            <div class="project-card">
-
-                <i class="fas fa-comments project-icon"></i>
-
-                <h3>LLM Application Using APIs</h3>
-
-                <p>
-                    Created AI-powered applications using Large Language Model APIs
-                    such as OpenAI and Gemini APIs. Implemented prompt engineering,
-                    chatbot functionality, AI automation workflows, and dynamic
-                    response generation using Python and API integrations.
-                </p>
-
-                <div class="project-tech">
-
-                    <span class="tech-tag">OpenAI API</span>
-                    <span class="tech-tag">Gemini API</span>
-                    <span class="tech-tag">Python</span>
-                    <span class="tech-tag">Prompt Engineering</span>
-                    <span class="tech-tag">Automation</span>
-
-                </div>
-
-                <a href="https://huggingface.co/spaces/yogesh-yadav/Gemini_model"
-                    target="_blank"
-                    class="btn btn-secondary">
-
-                    View Project
-
-                </a>
-
-            </div>
-
-            <!-- PROJECT 4 -->
-
-            <div class="project-card">
-
-                <i class="fas fa-globe project-icon"></i>
-
-                <h3>Responsive Portfolio & Web Applications</h3>
-
-                <p>
-                    Designed and developed responsive websites and portfolio
-                    applications using HTML, CSS, and JavaScript with modern UI/UX
-                    principles. Focused on clean interfaces, responsive layouts,
-                    and interactive frontend experiences.
-                </p>
-
-                <div class="project-tech">
-
-                    <span class="tech-tag">HTML</span>
-                    <span class="tech-tag">CSS</span>
-                    <span class="tech-tag">JavaScript</span>
-                    <span class="tech-tag">Responsive Design</span>
-                    <span class="tech-tag">Frontend</span>
-
-                </div>
-
-                <a href="https://yogeshyadav-07.github.io/Yogesh_Portfolio/"
-                    target="_blank"
-                    class="btn btn-secondary">
-
-                    View Portfolio
-
-                </a>
-
-            </div>
-
-            <!-- PROJECT 5 -->
-
-            <div class="project-card">
-
-                <i class="fas fa-chart-line project-icon"></i>
-
-                <h3>Data Analytics & Visualization Dashboard</h3>
-
-                <p>
-                    Built interactive dashboards and visual analytics reports using
-                    Power BI and Python. Worked with datasets to generate business
-                    insights, data visualizations, trend analysis, and performance reports.
-                </p>
-
-                <div class="project-tech">
-
-                    <span class="tech-tag">Power BI</span>
-                    <span class="tech-tag">Python</span>
-                    <span class="tech-tag">Data Analytics</span>
-                    <span class="tech-tag">Visualization</span>
-
-                </div>
-
-                <a href="https://github.com/yogeshyadav-07"
-                    target="_blank"
-                    class="btn btn-secondary">
-
-                    View Project
-
-                </a>
-
-            </div>
-
-
-
-        </div>
-
-    </div>
-
-</section>
-
-    <!-- CONTACT -->
-
-    <section id="contact">
-
-        <div class="container">
-
-            <h2 class="section-title">Get In Touch</h2>
-
-            <p class="section-subtitle">
-                Open for internships, freelance work,
-                collaborations, and AI/ML opportunities.
-            </p>
-
-            <div class="contact-wrapper">
-
-                <!-- LEFT -->
-
-                <div class="contact-info">
-
-                    <h3>Contact Information</h3>
-
-                    <p>
-                        Feel free to connect with me for projects,
-                        collaborations, or technical discussions.
-                    </p>
-
-                    <ul class="contact-details">
-
-                        <li>
-                            <i class="fas fa-user"></i>
-                            Yogesh Kumar Yadav
-                        </li>
-
-                        <li>
-                            <i class="fas fa-envelope"></i>
-                            yogesh626813@gmail.com
-                        </li>
-
-                        <li>
-                            <i class="fas fa-phone"></i>
-                            +91 6268138217
-                        </li>
-
-                        <li>
-                            <i class="fas fa-location-dot"></i>
-                            Bhilai, Chhattisgarh, India
-                        </li>
-
-                    </ul>
-
-                    <h3>Connect With Me</h3>
-
-                    <div class="social-links">
-
-                        <a href="https://github.com/yogeshyadav-07"
-                            target="_blank"
-                            class="social-icon">
-
-                            <i class="fab fa-github"></i>
-
-                        </a>
-
-                        <a href="https://www.linkedin.com/in/yogesh-yadav-962557356/"
-                            target="_blank"
-                            class="social-icon">
-
-                            <i class="fab fa-linkedin"></i>
-
-                        </a>
-
-                        <a href="https://wa.me/916268138217"
-                            target="_blank"
-                            class="social-icon">
-
-                            <i class="fab fa-whatsapp"></i>
-
-                        </a>
-
-                    </div>
-
-                </div>
-
-                <!-- RIGHT -->
-
-                <form
-                    action="https://formsubmit.co/yogesh626813@gmail.com"
-                    method="POST"
-                    class="contact-form">
-
-                    <!-- Disable Captcha -->
-                    <input type="hidden" name="_captcha" value="false">
-
-                    <!-- Email Subject -->
-                    <input type="hidden"
-                        name="_subject"
-                        value="New Portfolio Contact Message">
-
-                    <!-- Redirect -->
-                    <input type="hidden"
-                        name="_next"
-                        value="http://127.0.0.1:5500/index.html?success=true">
-
-                    <div class="form-group">
-
-                        <label class="form-label">Full Name</label>
-
-                        <input type="text"
-                            name="name"
-                            class="form-control"
-                            placeholder="Enter your name"
-                            required>
-
-                    </div>
-
-                    <div class="form-group">
-
-                        <label class="form-label">Email Address</label>
-
-                        <input type="email"
-                            name="email"
-                            class="form-control"
-                            placeholder="Enter your email"
-                            required>
-
-                    </div>
-
-                    <div class="form-group">
-
-                        <label class="form-label">Subject</label>
-
-                        <input type="text"
-                            name="subject"
-                            class="form-control"
-                            placeholder="Project / Internship / Collaboration"
-                            required>
-
-                    </div>
-
-                    <div class="form-group">
-
-                        <label class="form-label">Message</label>
-
-                        <textarea name="message"
-                            class="form-control"
-                            placeholder="Write your message..."
-                            required></textarea>
-
-                    </div>
-
-                    <button type="submit" class="btn btn-primary">
-
-                        Send Message
-
-                        <i class="fas fa-paper-plane"></i>
-
-                    </button>
-
-                </form>
-                <!-- SUCCESS POPUP -->
-
-<div id="successPopup" class="success-popup">
-
-    <div class="popup-box">
-
-        <i class="fas fa-circle-check"></i>
-
-        <h3>Yogesh Kumar Yadav</h3>
-
-        <p>Your message has been sent successfully!</p>
-
-        <button onclick="closePopup()">
-            OK
-        </button>
-
-    </div>
-
-</div>
-
-            </div>
-
-        </div>
-
-    </section>
-
-    <!-- FOOTER -->
-
-    <footer>
-
-        <div class="container">
-
-            <p>
-                © 2026 Yogesh Kumar Yadav. All Rights Reserved.
-            </p>
-
-            <p style="margin-top: 0.5rem; font-size: 0.8rem;">
-                Built with HTML, CSS & JavaScript
-            </p>
-
-        </div>
-
-    </footer>
-
-    <!-- SCRIPT -->
-
-    <script>
-
-        // TYPEWRITER EFFECT
-
-        const textElement = document.getElementById('typewriter');
-
-        const textToType = "Yogesh Kumar Yadav";
-
-        let index = 0;
-
-        function typeWriter() {
-
-            if (index < textToType.length) {
-
-                if (index === 0) {
-                    textElement.innerHTML = '';
-                }
-
-                textElement.innerHTML += textToType.charAt(index);
-
-                index++;
-
-                setTimeout(typeWriter, 120);
-            }
-        }
-
-        window.addEventListener('load', () => {
-
-            setTimeout(typeWriter, 500);
-
-        });
-
-
-        // SUCCESS POPUP
-
-       const urlParams = new URLSearchParams(window.location.search);
-
-if (urlParams.get('success') === 'true') {
-
-    document.getElementById("successPopup").style.display = "flex";
-
-    window.history.replaceState(
-        {},
-        document.title,
-        window.location.pathname
-    );
+<!-- Icon sprite -->
+<svg width="0" height="0" style="position:absolute" aria-hidden="true">
+<symbol id="gh" viewBox="0 0 24 24"><path d="M9 19c-4.3 1.4-4.3-2.5-6-3m12 5v-3.5c0-1 .1-1.4-.5-2 2.8-.3 5.5-1.4 5.5-6a4.6 4.6 0 0 0-1.3-3.2 4.2 4.2 0 0 0-.1-3.2s-1.1-.3-3.5 1.3a12.3 12.3 0 0 0-6.2 0C6.5 2.8 5.4 3.1 5.4 3.1a4.2 4.2 0 0 0-.1 3.2A4.6 4.6 0 0 0 4 9.5c0 4.6 2.7 5.7 5.5 6-.6.6-.6 1.2-.5 2V21"/></symbol>
+<symbol id="in" viewBox="0 0 24 24"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-4 0v7h-4v-7a6 6 0 0 1 6-6zM2 9h4v12H2zM4 2a2 2 0 1 1 0 4 2 2 0 0 1 0-4z"/></symbol>
+<symbol id="ml" viewBox="0 0 24 24"><rect x="2" y="4" width="20" height="16" rx="2"/><path d="m22 7-10 6L2 7"/></symbol>
+<symbol id="dl" viewBox="0 0 24 24"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4M7 10l5 5 5-5M12 15V3"/></symbol>
+<symbol id="ph" viewBox="0 0 24 24"><path d="M22 16.9v3a2 2 0 0 1-2.2 2 19.8 19.8 0 0 1-8.6-3.1 19.5 19.5 0 0 1-6-6A19.8 19.8 0 0 1 2.1 4.2 2 2 0 0 1 4.1 2h3a2 2 0 0 1 2 1.7c.1 1 .4 1.9.7 2.8a2 2 0 0 1-.5 2.1L8.1 9.9a16 16 0 0 0 6 6l1.3-1.3a2 2 0 0 1 2.1-.4c.9.3 1.8.6 2.8.7a2 2 0 0 1 1.7 2z"/></symbol>
+<symbol id="ex" viewBox="0 0 24 24"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6M15 3h6v6M10 14 21 3"/></symbol>
+<symbol id="ar" viewBox="0 0 24 24"><path d="M5 12h14M13 6l6 6-6 6"/></symbol>
+<symbol id="up" viewBox="0 0 24 24"><path d="m18 15-6-6-6 6"/></symbol>
+<symbol id="sun" viewBox="0 0 24 24"><circle cx="12" cy="12" r="4"/><path d="M12 2v2M12 20v2M4.9 4.9l1.4 1.4M17.7 17.7l1.4 1.4M2 12h2M20 12h2M4.9 19.1l1.4-1.4M17.7 6.3l1.4-1.4"/></symbol>
+<symbol id="mn" viewBox="0 0 24 24"><path d="M21 12.8A9 9 0 1 1 11.2 3a7 7 0 0 0 9.8 9.8z"/></symbol>
+<symbol id="bars" viewBox="0 0 24 24"><path d="M3 6h18M3 12h18M3 18h18"/></symbol>
+<symbol id="brain" viewBox="0 0 24 24"><path d="M12 5a3 3 0 1 0-5.9.8A4 4 0 0 0 4 12.5a4 4 0 0 0 2.5 3.7A3 3 0 0 0 12 18zm0 0a3 3 0 1 1 5.9.8 4 4 0 0 1 2.1 6.7 4 4 0 0 1-2.5 3.7A3 3 0 0 1 12 18M12 5v13"/></symbol>
+<symbol id="chart" viewBox="0 0 24 24"><path d="M3 3v18h18M7 15l4-4 3 3 5-6"/></symbol>
+<symbol id="code" viewBox="0 0 24 24"><path d="m16 18 6-6-6-6M8 6l-6 6 6 6"/></symbol>
+<symbol id="tool" viewBox="0 0 24 24"><path d="M14.7 6.3a4 4 0 0 0-5.4 5.4L3 18l3 3 6.3-6.3a4 4 0 0 0 5.4-5.4l-2.5 2.5-2.4-.6-.6-2.4z"/></symbol>
+<symbol id="doc" viewBox="0 0 24 24"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8zM14 2v6h6M8 13h8M8 17h8"/></symbol>
+<symbol id="cal" viewBox="0 0 24 24"><rect x="3" y="4" width="18" height="18" rx="2"/><path d="M16 2v4M8 2v4M3 10h18"/></symbol>
+<symbol id="lock" viewBox="0 0 24 24"><rect x="3" y="11" width="18" height="11" rx="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></symbol>
+<symbol id="chat" viewBox="0 0 24 24"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></symbol>
+<symbol id="heart" viewBox="0 0 24 24"><path d="M20.8 4.6a5.5 5.5 0 0 0-7.8 0L12 5.7l-1-1.1a5.5 5.5 0 0 0-7.8 7.8l1 1.1L12 21l7.8-7.5 1-1.1a5.5 5.5 0 0 0 0-7.8z"/></symbol>
+<symbol id="eye" viewBox="0 0 24 24"><path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8S1 12 1 12z"/><circle cx="12" cy="12" r="3"/></symbol>
+<symbol id="db" viewBox="0 0 24 24"><ellipse cx="12" cy="5" rx="9" ry="3"/><path d="M3 5v14c0 1.7 4 3 9 3s9-1.3 9-3V5M3 12c0 1.7 4 3 9 3s9-1.3 9-3"/></symbol>
+<symbol id="bld" viewBox="0 0 24 24"><path d="M3 21h18M5 21V7l7-4 7 4v14M9 9h1M14 9h1M9 13h1M14 13h1M10 21v-4h4v4"/></symbol>
+<symbol id="cert" viewBox="0 0 24 24"><circle cx="12" cy="9" r="6"/><path d="m8.5 14-1.5 8 5-3 5 3-1.5-8"/></symbol>
+<symbol id="pin" viewBox="0 0 24 24"><path d="M20 10c0 6-8 12-8 12S4 16 4 10a8 8 0 0 1 16 0z"/><circle cx="12" cy="10" r="3"/></symbol>
+</svg>
+
+<div id="prog"></div>
+<header id="hd"><div class="wrap"><nav aria-label="Main navigation">
+ <a class="logo" href="#home" aria-label="Yogesh – home">Yogesh<b>.</b></a>
+ <div class="links" id="links">
+  <a href="#home">Home</a><a href="#about">About</a><a href="#skills">Skills</a><a href="#experience">Experience</a><a href="#projects">Projects</a><a href="#achievements">Achievements</a><a href="#contact">Contact</a>
+ </div>
+ <div class="nr">
+  <a class="btn sm resume-link" href="#" target="_blank" rel="noopener"><svg class="i"><use href="#dl"/></svg>Resume</a>
+  <button class="ib" id="theme" aria-label="Toggle theme"><svg class="i"><use href="#sun"/></svg></button>
+  <button class="ib" id="menu" aria-label="Open menu" aria-expanded="false"><svg class="i"><use href="#bars"/></svg></button>
+ </div>
+</nav></div></header>
+
+<main>
+<section class="hero" id="home"><canvas id="net" aria-hidden="true"></canvas><div class="wrap hg">
+ <div>
+  <div class="badge"><span class="dot"></span>Open to Internship &amp; AI/ML Opportunities</div>
+  <h1>Building useful AI systems from real-world ideas.</h1>
+  <p class="sub">AI/ML Engineer Intern • Generative AI • Machine Learning</p>
+  <div class="type" id="type" aria-live="off"></div>
+  <p class="intro">I'm Yogesh, a B.Tech CSE (Data Science) student who enjoys turning ideas into working AI-powered applications, from RAG apps and agents to data tools and ML models.</p>
+  <div class="row">
+   <a class="btn p" href="#projects"><svg class="i"><use href="#ar"/></svg>View My Work</a>
+   <a class="btn p resume-link" href="#" target="_blank" rel="noopener" download><svg class="i"><use href="#dl"/></svg>Download Resume</a>
+   <a class="btn" href="#contact">Contact Me</a>
+  </div>
+  <div class="soc">
+   <a class="ib gh-link" href="#" target="_blank" rel="noopener" aria-label="GitHub profile"><svg class="i"><use href="#gh"/></svg></a>
+   <a class="ib in-link" href="#" target="_blank" rel="noopener" aria-label="LinkedIn profile"><svg class="i"><use href="#in"/></svg></a>
+   <a class="ib mail-link" href="#" aria-label="Send an email"><svg class="i"><use href="#ml"/></svg></a>
+  </div>
+  <div class="stats">
+   <div class="stat"><b>AI/ML</b><span>Primary focus</span></div>
+   <div class="stat"><b>Data Science</b><span>Core interest</span></div>
+   <div class="stat"><b>2028</b><span>Expected graduation</span></div>
+  </div>
+ </div>
+ <!-- ===== PROFILE IMAGE URL: change it in the CONFIG block in the script at the bottom ===== -->
+ <div class="pic"><img id="avatar" alt="Portrait of Yogesh Kumar Yadav" width="340" height="340" src=""></div>
+</div></section>
+
+<section id="about"><div class="wrap rv">
+ <h2>A builder, learner &amp; problem solver.</h2>
+ <div class="ag">
+  <div>
+   <p>I'm a B.Tech Computer Science Engineering (Data Science) student who learns best by building. I like taking an idea, wiring up the data, models and APIs behind it, and shipping something people can actually try.</p>
+   <p>Most of my recent work sits around LLM applications: RAG systems that answer questions from documents, agents that use tools like Gmail and Calendar, and conversational tools that make data analysis easier for people who don't code.</p>
+   <p>I have hands-on project internship experience (not full-time work) across Machine Learning, Generative AI, LLMs, RAG, NLP and Computer Vision, using Python, FastAPI, Streamlit and YOLO.</p>
+   <p>I'm looking for internships where I can keep learning while contributing to real AI/ML and software work.</p>
+   <div class="tags"><span class="tag">Machine Learning</span><span class="tag">Data Science</span><span class="tag">Generative AI</span><span class="tag">LLM applications</span><span class="tag">RAG</span><span class="tag">AI Agents</span><span class="tag">APIs</span><span class="tag">Practical software development</span></div>
+  </div>
+  <aside class="info" aria-label="Quick facts">
+   <div><small>Education</small>B.Tech CSE (Data Science)</div>
+   <div><small>University</small>CSVTU, Bhilai</div>
+   <div><small>Location</small>Bhilai, Chhattisgarh</div>
+   <div><small>Graduation</small>2028</div>
+  </aside>
+ </div>
+</div></section>
+
+<section id="skills"><div class="wrap rv">
+ <h2>Skills</h2><p class="lead">The tools and concepts I use when I build.</p>
+ <div class="sg">
+  <div class="sc"><h3><svg class="i"><use href="#code"/></svg>Languages</h3><div class="chips"><span class="chip">Python</span><span class="chip">C++</span><span class="chip">C</span><span class="chip">SQL</span><span class="chip">JavaScript</span><span class="chip">HTML</span><span class="chip">CSS</span></div></div>
+  <div class="sc"><h3><svg class="i"><use href="#chart"/></svg>ML / Data</h3><div class="chips"><span class="chip">Scikit-learn</span><span class="chip">Pandas</span><span class="chip">NumPy</span><span class="chip">Matplotlib</span><span class="chip">Classification</span><span class="chip">Regression</span><span class="chip">Feature Engineering</span><span class="chip">Model Evaluation</span><span class="chip">EDA</span><span class="chip">Data Visualization</span><span class="chip">Power BI</span></div></div>
+  <div class="sc"><h3><svg class="i"><use href="#brain"/></svg>Generative AI / LLM</h3><div class="chips"><span class="chip">LLMs</span><span class="chip">Generative AI</span><span class="chip">RAG</span><span class="chip">LangChain</span><span class="chip">Embeddings</span><span class="chip">Vector Search</span><span class="chip">Prompt Engineering</span><span class="chip">AI Agents</span></div></div>
+  <div class="sc"><h3><svg class="i"><use href="#eye"/></svg>Computer Vision</h3><div class="chips"><span class="chip">YOLO</span><span class="chip">OpenCV</span><span class="chip">EasyOCR</span><span class="chip">Object Detection</span><span class="chip">Image Processing</span></div></div>
+  <div class="sc"><h3><svg class="i"><use href="#tool"/></svg>Development</h3><div class="chips"><span class="chip">FastAPI</span><span class="chip">Flask</span><span class="chip">REST APIs</span><span class="chip">Streamlit</span><span class="chip">Docker</span><span class="chip">Git</span><span class="chip">GitHub</span><span class="chip">Jupyter</span><span class="chip">VS Code</span></div></div>
+  <div class="sc"><h3><svg class="i"><use href="#db"/></svg>Platforms / Databases</h3><div class="chips"><span class="chip">Mistral AI</span><span class="chip">Gemini</span><span class="chip">OpenAI API</span><span class="chip">Hugging Face</span><span class="chip">SentenceTransformers</span><span class="chip">ChromaDB</span><span class="chip">Supabase</span><span class="chip">MySQL</span><span class="chip">PostgreSQL</span></div></div>
+ </div>
+</div></section>
+
+<section id="experience"><div class="wrap rv">
+ <h2>Experience &amp; internships</h2><p class="lead">Project internships where I worked on AI/ML and data problems in the field.</p>
+ <div class="tl wide">
+  <div class="ti"><div class="xh"><div class="pi"><svg class="i"><use href="#bld"/></svg></div><div><time>May 2026 – Jun 2026</time><h3>Project Intern</h3><p class="inst">Indian Institute of Technology Bhilai</p></div></div><p class="proj">Data-Driven Analytics &amp; Rural Sustainability</p><ul><li>Collected and analyzed field, GPS, agricultural, livestock and location-based data for rural sustainability studies.</li><li>Created and annotated a custom plastic-waste dataset and trained a YOLO-based object detection model for waste identification.</li><li>Applied Python, Machine Learning, GIS/Mapping, data visualization, dataset annotation and Microsoft Excel in field-based projects.</li></ul><div class="chips"><span class="chip">Python</span><span class="chip">Machine Learning</span><span class="chip">YOLO</span><span class="chip">GIS/Mapping</span><span class="chip">Data Visualization</span><span class="chip">Microsoft Excel</span></div></div>
+  <div class="ti"><div class="xh"><div class="pi"><svg class="i"><use href="#bld"/></svg></div><div><time>Jul 2026</time><h3>Project Intern</h3><p class="inst">NIT Raipur × UNICEF</p></div></div><p class="proj">EchoByte – Plastic Recovery &amp; Smart Waste Management</p><ul><li>Contributed to an AI-driven ecosystem for plastic recovery, smart surveillance and community-led waste management.</li><li>Worked with YOLO-based computer vision, plastic waste detection, waste segregation, OCR and vehicle number-plate detection.</li><li>Supported AI/ML integration, data processing, testing and software workflows for sustainability applications.</li></ul><div class="chips"><span class="chip">YOLO</span><span class="chip">Computer Vision</span><span class="chip">OCR</span><span class="chip">AI/ML</span><span class="chip">Data Processing</span></div></div>
+ </div>
+</div></section>
+
+<section id="projects"><div class="wrap rv">
+ <h2>Projects</h2><p class="lead">Things I've built while learning. Each one has a link to the code.</p>
+ <!-- ===== PROJECT SLIDER: edit slides in the SLIDES array in the script (add screenshot URLs in "shot") ===== -->
+ <div class="sl" id="slider" aria-roledescription="carousel" aria-label="Featured projects"><div class="st" id="strack"></div>
+  <button class="ib sa prev" id="sprev" aria-label="Previous project"><svg class="i" style="transform:rotate(180deg)"><use href="#ar"/></svg></button>
+  <button class="ib sa next" id="snext" aria-label="Next project"><svg class="i"><use href="#ar"/></svg></button>
+  <div class="sdots" id="sdots"></div></div>
+ <div class="filters" role="group" aria-label="Filter projects">
+  <button class="f on" data-f="all">All</button><button class="f" data-f="ai">AI / LLM</button><button class="f" data-f="data">Data</button><button class="f" data-f="software">Software</button>
+ </div>
+ <!-- ===== PROJECT LINKS: edit the repo / demo URLs directly in the cards below ===== -->
+ <div class="pg">
+  <article class="pc" data-c="ai data">
+   <span class="feat">Featured</span><div class="pi"><svg class="i"><use href="#chart"/></svg></div>
+   <h3>OmniData / Advanced Data Analysis</h3>
+   <p>An AI-powered conversational data analysis app. Upload a dataset, ask questions in plain language, and get tables, charts and insights without writing Python.</p>
+   <div class="chips"><span class="chip">Python</span><span class="chip">Pandas</span><span class="chip">AI</span><span class="chip">Data Analysis</span><span class="chip">Streamlit</span></div>
+   <div class="row"><a class="btn sm" href="https://github.com/yogeshyadav-07/Advanced_Data_Analysis" target="_blank" rel="noopener"><svg class="i"><use href="#gh"/></svg>GitHub</a><a class="btn sm p" href="https://huggingface.co/spaces/yogesh-yadav/Advanced_Data_Analysis" target="_blank" rel="noopener"><svg class="i"><use href="#ex"/></svg>Live Demo</a></div>
+  </article>
+  <article class="pc" data-c="ai software">
+   <div class="pi"><svg class="i"><use href="#brain"/></svg></div>
+   <h3>OmniAgent Pro / Multimodal AI Context Platform</h3>
+   <p>A multimodal AI platform project. Add a fuller description here.</p>
+   <div class="chips"><span class="chip">AI</span><span class="chip">Multimodal</span></div>
+   <!-- Repo link not provided, so this points to the GitHub profile. Replace with the exact repo URL and update the description/tags. -->
+   <div class="row"><a class="btn sm" href="https://github.com/yogeshyadav-07" target="_blank" rel="noopener"><svg class="i"><use href="#gh"/></svg>GitHub</a></div>
+  </article>
+  <article class="pc" data-c="ai">
+   <div class="pi"><svg class="i"><use href="#doc"/></svg></div>
+   <h3>Enterprise RAG Engine</h3>
+   <p>A Retrieval-Augmented Generation app for asking questions from documents using semantic retrieval, embeddings and an LLM pipeline.</p>
+   <div class="chips"><span class="chip">Python</span><span class="chip">LangChain</span><span class="chip">RAG</span><span class="chip">Mistral</span><span class="chip">ChromaDB</span><span class="chip">Hugging Face</span></div>
+   <div class="row"><a class="btn sm" href="https://github.com/yogeshyadav-07/Enterprise-rag-engine" target="_blank" rel="noopener"><svg class="i"><use href="#gh"/></svg>GitHub</a></div>
+  </article>
+  <article class="pc" data-c="ai software">
+   <div class="pi"><svg class="i"><use href="#cal"/></svg></div>
+   <h3>Email &amp; Calendar AI Agent</h3>
+   <p>A conversational assistant that works with Gmail and Google Calendar through an agent-based workflow and tool integrations.</p>
+   <div class="chips"><span class="chip">Python</span><span class="chip">LangGraph</span><span class="chip">Mistral</span><span class="chip">Composio</span><span class="chip">Streamlit</span></div>
+   <div class="row"><a class="btn sm" href="https://github.com/yogeshyadav-07/email-agent-" target="_blank" rel="noopener"><svg class="i"><use href="#gh"/></svg>GitHub</a></div>
+  </article>
+  <article class="pc" data-c="ai software">
+   <div class="pi"><svg class="i"><use href="#lock"/></svg></div>
+   <h3>Secure Multimodal RAG Agent</h3>
+   <p>Combines document retrieval, multimodal capabilities, authentication and database integration in a single workflow.</p>
+   <div class="chips"><span class="chip">Python</span><span class="chip">RAG</span><span class="chip">Computer Vision</span><span class="chip">MySQL</span><span class="chip">AI</span></div>
+   <div class="row"><a class="btn sm" href="https://github.com/yogeshyadav-07/secure-multimodal-rag-agent" target="_blank" rel="noopener"><svg class="i"><use href="#gh"/></svg>GitHub</a></div>
+  </article>
+  <article class="pc" data-c="ai software">
+   <div class="pi"><svg class="i"><use href="#chat"/></svg></div>
+   <h3>LLM API Chat Assistant</h3>
+   <p>A conversational assistant built on an LLM API, with web-grounding and context capabilities.</p>
+   <div class="chips"><span class="chip">Mistral AI</span><span class="chip">Tavily</span><span class="chip">RAG</span><span class="chip">Streamlit</span></div>
+   <div class="row"><a class="btn sm" href="https://github.com/yogeshyadav-07/llm-api-chat-assistant" target="_blank" rel="noopener"><svg class="i"><use href="#gh"/></svg>GitHub</a></div>
+  </article>
+  <article class="pc" data-c="data software">
+   <div class="pi"><svg class="i"><use href="#heart"/></svg></div>
+   <h3>Student Mental Health Score Prediction</h3>
+   <p>An ML app that predicts a student wellbeing score from screen time, sleep, study hours and stress level. The model is served by a FastAPI backend with an interactive web interface.</p>
+   <div class="chips"><span class="chip">Python</span><span class="chip">Machine Learning</span><span class="chip">FastAPI</span><span class="chip">HTML</span><span class="chip">CSS</span><span class="chip">JavaScript</span></div>
+   <!-- Repo link not verified, so this points to the GitHub profile. Replace with the exact repo URL when ready. -->
+   <div class="row"><a class="btn sm" href="https://github.com/yogeshyadav-07" target="_blank" rel="noopener"><svg class="i"><use href="#gh"/></svg>GitHub</a><a class="btn sm p" href="https://mental-health-score-1-fxfg.onrender.com/" target="_blank" rel="noopener"><svg class="i"><use href="#ex"/></svg>Live Demo</a></div>
+  </article>
+ </div>
+ <div class="more"><a class="btn" href="https://github.com/yogeshyadav-07" target="_blank" rel="noopener"><svg class="i"><use href="#gh"/></svg>View All GitHub Projects</a></div>
+</div></section>
+
+<section id="achievements"><div class="wrap rv">
+ <h2>Achievements &amp; certifications</h2><p class="lead">Competitions I took part in and courses I completed, alongside ongoing learning through projects and technical events.</p>
+ <div class="sg ach">
+  <div class="sc hl"><div class="em" aria-hidden="true">🥈</div><h3>2nd Position — Celestial Strokes</h3><p>IIT Kharagpur NSSC 2025</p></div>
+  <div class="sc"><div class="em" aria-hidden="true">🚀</div><h3>NASA Space Apps Challenge 2025</h3><p>Participant, NIT Raipur</p></div>
+  <div class="sc"><div class="em"><svg class="i"><use href="#cert"/></svg></div><h3>Machine Learning for Data Science</h3><p>IBM</p></div>
+  <div class="sc"><div class="em"><svg class="i"><use href="#cert"/></svg></div><h3>Machine Learning Certification</h3><p>Simplilearn</p></div>
+ </div>
+</div></section>
+
+<section id="contact"><div class="wrap rv">
+ <h2>Let's build something useful.</h2>
+ <p class="lead">For internships, collaborations, project discussions or technical opportunities, feel free to reach out.</p>
+ <div class="cg">
+  <!-- ===== CONTACT DETAILS: edit email, phone and links in the CONFIG block in the script ===== -->
+  <div class="cl">
+   <a class="cc mail-link" href="#"><svg class="i"><use href="#ml"/></svg><span><small>Email</small><span class="mail-txt"></span></span></a>
+   <a class="cc phone-link" href="#"><svg class="i"><use href="#ph"/></svg><span><small>Phone</small><span class="phone-txt"></span></span></a>
+   <a class="cc in-link" href="#" target="_blank" rel="noopener"><svg class="i"><use href="#in"/></svg><span><small>LinkedIn</small>yogesh-kumar-yadav</span></a>
+   <a class="cc gh-link" href="#" target="_blank" rel="noopener"><svg class="i"><use href="#gh"/></svg><span><small>GitHub</small>yogeshyadav-07</span></a>
+   <a class="cc" href="https://yogeshyadav-07.github.io/Yogesh_Portfolio/" target="_blank" rel="noopener"><svg class="i"><use href="#ex"/></svg><span><small>Portfolio</small>yogeshyadav-07.github.io/Yogesh_Portfolio</span></a>
+   <a class="cc resume-link" href="#" target="_blank" rel="noopener"><svg class="i"><use href="#dl"/></svg><span><small>Resume</small>Download PDF</span></a>
+   <div class="cc"><svg class="i"><use href="#pin"/></svg><span><small>Location</small>Bhilai, Chhattisgarh, India</span></div>
+  </div>
+  <form id="form" novalidate>
+   <input type="text" name="_gotcha" tabindex="-1" autocomplete="off" style="display:none" aria-hidden="true">
+   <div class="two"><label>Name<input name="name" required autocomplete="name"></label><label>Email<input name="email" type="email" required autocomplete="email"></label></div>
+   <label>Subject<input name="subject" required></label>
+   <label>Message<textarea name="message" required></textarea></label>
+   <button class="btn p" type="submit"><svg class="i"><use href="#ml"/></svg>Send message</button>
+  </form>
+ </div>
+</div></section>
+</main>
+
+<footer><div class="wrap fr">
+ <div>© 2026 Yogesh Kumar Yadav<br>Built with HTML, CSS &amp; JavaScript.</div>
+ <div class="soc">
+  <a class="ib gh-link" href="#" target="_blank" rel="noopener" aria-label="GitHub"><svg class="i"><use href="#gh"/></svg></a>
+  <a class="ib in-link" href="#" target="_blank" rel="noopener" aria-label="LinkedIn"><svg class="i"><use href="#in"/></svg></a>
+  <a class="ib mail-link" href="#" aria-label="Email"><svg class="i"><use href="#ml"/></svg></a>
+ </div>
+</div></footer>
+<button class="ib" id="top" aria-label="Back to top"><svg class="i"><use href="#up"/></svg></button>
+<div id="toast" role="status" aria-live="polite"></div>
+
+<script>
+/* ===== CONFIG: edit these values ===== */
+const CONFIG = {
+  // PROFILE IMAGE URL
+  profileImage: "yogesh yadav img.png",
+  // RESUME URL
+  resume: "yogesh_yadav_updated_resume .pdf",
+  // CONTACT DETAILS
+  email: "yogesh626813@gmail.com",
+  phone: "+91 6268138217",
+  linkedin: "https://www.linkedin.com/in/yogesh-kumar-yadav-962557356",
+  github: "https://github.com/yogeshyadav-07",
+  // FORMSPREE: create a form at formspree.io, then paste your endpoint here (https://formspree.io/f/xxxxxxxx)
+  formspree: "https://formspree.io/f/yogesh626813@gmail.com",
+  roles: ["AI/ML Engineer Intern","Generative AI Developer","Machine Learning Developer","Data Science Student","RAG & LLM Builder"]
+};
+const $=(s,r=document)=>r.querySelector(s), $$=(s,r=document)=>[...r.querySelectorAll(s)];
+const set=(sel,attr,val)=>$$(sel).forEach(e=>e.setAttribute(attr,val));
+
+/* fill config values */
+const av=$("#avatar"); av.src=CONFIG.profileImage;
+av.onerror=()=>{av.onerror=null;av.src="data:image/svg+xml,"+encodeURIComponent('<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><rect width="100" height="100" fill="#0c1222"/><text x="50" y="62" font-size="38" text-anchor="middle" fill="#22d3ee" font-family="sans-serif">YY</text></svg>')};
+set(".resume-link","href",CONFIG.resume);
+set(".gh-link","href",CONFIG.github); set(".in-link","href",CONFIG.linkedin);
+set(".mail-link","href","mailto:"+CONFIG.email); set(".phone-link","href","tel:"+CONFIG.phone.replace(/\s/g,""));
+$(".mail-txt").textContent=CONFIG.email; $(".phone-txt").textContent=CONFIG.phone;
+
+/* toast */
+let tt; function toast(m){const t=$("#toast");t.textContent=m;t.classList.add("v");clearTimeout(tt);tt=setTimeout(()=>t.classList.remove("v"),3200)}
+
+/* theme */
+const root=document.documentElement, tb=$("#theme");
+function applyTheme(t){root.dataset.theme=t;tb.innerHTML='<svg class="i"><use href="#'+(t==="dark"?"sun":"mn")+'"/></svg>'}
+let saved=null; try{saved=localStorage.getItem("theme-v2")}catch(e){}
+applyTheme(saved||"light");
+tb.onclick=()=>{const n=root.dataset.theme==="dark"?"light":"dark";applyTheme(n);try{localStorage.setItem("theme-v2",n)}catch(e){}};
+
+/* mobile menu */
+const links=$("#links"), mb=$("#menu");
+mb.onclick=()=>{const o=links.classList.toggle("o");mb.setAttribute("aria-expanded",o)};
+$$("#links a").forEach(a=>a.onclick=()=>{links.classList.remove("o");mb.setAttribute("aria-expanded",false)});
+
+/* typing effect */
+(function(){const el=$("#type");let r=0,c=0,del=false;
+ if(matchMedia("(prefers-reduced-motion:reduce)").matches){el.textContent=CONFIG.roles[0];return}
+ (function tick(){const w=CONFIG.roles[r];c+=del?-1:1;el.textContent=w.slice(0,c);
+  let d=del?35:70;
+  if(!del&&c===w.length){del=true;d=1400}else if(del&&c===0){del=false;r=(r+1)%CONFIG.roles.length;d=350}
+  setTimeout(tick,d)})()})();
+
+/* scroll: progress, glass nav, back-to-top, active link */
+const secs=$$("main section"), navA=$$("#links a");
+function onScroll(){
+ const y=scrollY,h=document.documentElement.scrollHeight-innerHeight;
+ $("#prog").style.width=(h>0?y/h*100:0)+"%";
+ $("#hd").classList.toggle("s",y>20); $("#top").classList.toggle("v",y>600);
+ let cur=secs[0].id; secs.forEach(s=>{if(y+120>=s.offsetTop)cur=s.id});
+ if(innerHeight+y>=document.documentElement.scrollHeight-4)cur=secs[secs.length-1].id;
+ navA.forEach(a=>a.classList.toggle("on",a.getAttribute("href")==="#"+cur));
+}
+addEventListener("scroll",onScroll,{passive:true}); onScroll();
+$("#top").onclick=()=>scrollTo({top:0,behavior:"smooth"});
+
+/* reveal on scroll */
+const io=new IntersectionObserver(es=>es.forEach(e=>{if(e.isIntersecting){e.target.classList.add("in");io.unobserve(e.target)}}),{threshold:.08});
+$$(".rv").forEach(e=>io.observe(e));
+
+/* project filter */
+$$(".f").forEach(b=>b.onclick=()=>{
+ $$(".f").forEach(x=>x.classList.toggle("on",x===b));
+ const f=b.dataset.f;
+ $$(".pc").forEach(c=>c.classList.toggle("hide",f!=="all"&&!c.dataset.c.split(" ").includes(f)));
+});
+
+/* contact form -> Formspree (falls back to mailto until you add your Formspree ID) */
+$("#form").addEventListener("submit",async e=>{
+ e.preventDefault();const f=e.target,d=new FormData(f),btn=$("button[type=submit]",f);
+ if(!f.checkValidity()){toast("Please fill in every field with a valid email.");return}
+ if(!CONFIG.formspree||CONFIG.formspree.includes("YOUR_FORM_ID")){
+  const body=d.get("message")+"\n\n— "+d.get("name")+" ("+d.get("email")+")";
+  location.href="mailto:"+CONFIG.email+"?subject="+encodeURIComponent(d.get("subject"))+"&body="+encodeURIComponent(body);
+  toast("Formspree isn't set up yet, so your email app opened instead.");return}
+ const old=btn.innerHTML;btn.disabled=true;btn.textContent="Sending...";
+ try{const r=await fetch(CONFIG.formspree,{method:"POST",body:d,headers:{Accept:"application/json"}});
+  if(r.ok){toast("Thanks! Your message was sent.");f.reset()}else{toast("Could not send. Please email me directly.")}}
+ catch(err){toast("Network error. Please try again or email me.")}
+ btn.disabled=false;btn.innerHTML=old;
+});
+
+/* ===== PROJECT SLIDER: edit slides here. Put a screenshot URL in "shot" (e.g. "images/omnidata.png") ===== */
+/* interactive slide illustrations (schematic, no real data) */
+const FLOWS={
+ rag:[["Documents","Your files are the source of the answers."],["Chunks","Text is split into passages."],["Embeddings","Passages become vectors for semantic search."],["ChromaDB","Vector search finds the relevant passages."],["LLM","Mistral writes the answer from them."]],
+ secure:[["Login","Authentication controls who gets in."],["Retrieval","Relevant document content is fetched."],["Vision","Multimodal input such as images."],["Database","MySQL stores users and data."],["Answer","One workflow returns the result."]],
+ ml:[["Inputs","Screen time, sleep, study hours and stress level."],["ML model","Trained to predict a wellbeing score."],["FastAPI","Serves the model as an API."],["Web UI","An interactive page to try it."]]};
+function art(k){
+ const w=document.createElement("div");w.className="art";
+ if(k==="data"){
+  w.classList.add("chart");w.tabIndex=0;w.setAttribute("role","button");w.setAttribute("aria-label","Toggle between bar and line chart");
+  w.innerHTML='<div class="pr">Show trends by category</div><svg viewBox="0 0 240 120" aria-hidden="true"><g class="bars">'+[40,70,55,90,65,100].map((h,j)=>'<rect x="'+(14+j*38)+'" y="'+(110-h)+'" width="26" height="'+h+'" rx="5"/>').join("")+'</g><polyline class="ln" points="27,70 65,40 103,55 141,20 179,45 217,10"/></svg><p class="cap">Click to switch between bars and a line (illustrative).</p>';
+  w.onclick=()=>w.classList.toggle("line");w.onkeydown=e=>{if(e.key==="Enter"||e.key===" "){e.preventDefault();w.classList.toggle("line")}};
+ }else if(k==="agent"){
+  w.classList.add("agent");
+  const R={"Summarize my inbox":"I can work with your Gmail through tool integrations.","Schedule a meeting":"I can use Google Calendar through the same agent workflow.","Draft an email":"I can help draft an email for you."};
+  w.innerHTML='<div class="bb u">What can you do?</div><div class="bb a">Pick a task below.</div><div class="qs"></div>';
+  const u=w.children[0],a=w.children[1],q=w.children[2];
+  Object.keys(R).forEach(t=>{const b=document.createElement("button");b.type="button";b.textContent=t;b.onclick=()=>{u.textContent=t;a.textContent="...";setTimeout(()=>a.textContent=R[t],350)};q.appendChild(b)});
+ }else{
+  w.classList.add("flow");const row=document.createElement("div"),cap=document.createElement("p");row.className="fl";cap.className="cap";
+  FLOWS[k].forEach((n,j,all)=>{const b=document.createElement("button");b.type="button";b.textContent=n[0];
+   const on=()=>{[...row.querySelectorAll("button")].forEach(c=>c.classList.remove("on"));b.classList.add("on");cap.textContent=n[1]};
+   b.onmouseenter=b.onfocus=b.onclick=on;row.appendChild(b);if(j<all.length-1){const i=document.createElement("i");i.textContent="›";i.setAttribute("aria-hidden","true");row.appendChild(i)}});
+  w.append(row,cap);row.firstChild.onclick();
+ }
+ return w}
+const SLIDES=[
+ {t:"OmniData / Advanced Data Analysis",d:"Upload a dataset, ask questions in plain language and get tables, charts and insights without writing Python.",icon:"chart",art:"data",shot:"",gh:"https://github.com/yogeshyadav-07/Advanced_Data_Analysis",live:"https://huggingface.co/spaces/yogesh-yadav/Advanced_Data_Analysis"},
+ {t:"Enterprise RAG Engine",d:"Ask questions from documents using semantic retrieval, embeddings and an LLM pipeline.",icon:"doc",art:"rag",shot:"",gh:"https://github.com/yogeshyadav-07/Enterprise-rag-engine"},
+ {t:"Email & Calendar AI Agent",d:"A conversational assistant for Gmail and Google Calendar built on an agent workflow with tool integrations.",icon:"cal",art:"agent",shot:"",gh:"https://github.com/yogeshyadav-07/email-agent-"},
+ {t:"Secure Multimodal RAG Agent",d:"Document retrieval, multimodal capabilities, authentication and database integration in one workflow.",icon:"lock",art:"secure",shot:"",gh:"https://github.com/yogeshyadav-07/secure-multimodal-rag-agent"},
+ {t:"Student Mental Health Score Prediction",d:"Predicts a student wellbeing score from screen time, sleep, study hours and stress level, served through FastAPI.",icon:"heart",art:"ml",shot:"",gh:"https://github.com/yogeshyadav-07",live:"https://mental-health-score-1-fxfg.onrender.com/"}
+];
+(function(){
+ const tr=$("#strack"),dots=$("#sdots"),box=$("#slider");let i=0,timer;
+ SLIDES.forEach((x,n)=>{
+  const d=document.createElement("div");d.className="sd";d.setAttribute("role","group");d.setAttribute("aria-label",(n+1)+" of "+SLIDES.length);
+  const m=document.createElement("div");m.className="smed";
+  if(x.shot){const im=document.createElement("img");im.src=x.shot;im.alt=x.t+" screenshot";im.loading="lazy";m.appendChild(im)}
+  else m.appendChild(art(x.art));
+  const b=document.createElement("div");b.className="sb";
+  b.innerHTML="<h3></h3><p></p><div class='row'></div>";b.children[0].textContent=x.t;b.children[1].textContent=x.d;
+  const r=b.children[2];
+  r.innerHTML='<a class="btn sm p" target="_blank" rel="noopener" href="'+x.gh+'"><svg class="i"><use href="#gh"/></svg>GitHub</a>'+(x.live?'<a class="btn sm" target="_blank" rel="noopener" href="'+x.live+'"><svg class="i"><use href="#ex"/></svg>Live Demo</a>':"");
+  d.append(m,b);tr.appendChild(d);
+  const k=document.createElement("button");k.setAttribute("aria-label","Go to project "+(n+1));k.onclick=()=>{go(n);play()};dots.appendChild(k);
+ });
+ function go(n){i=(n+SLIDES.length)%SLIDES.length;tr.style.transform="translateX(-"+i*100+"%)";[...dots.children].forEach((k,j)=>k.classList.toggle("on",j===i))}
+ function play(){clearInterval(timer);if(!matchMedia("(prefers-reduced-motion:reduce)").matches)timer=setInterval(()=>go(i+1),5500)}
+ $("#snext").onclick=()=>{go(i+1);play()};$("#sprev").onclick=()=>{go(i-1);play()};
+ box.onmouseenter=()=>clearInterval(timer);box.onmouseleave=play;
+ let x0=null;box.addEventListener("pointerdown",e=>{x0=e.clientX});
+ box.addEventListener("pointerup",e=>{if(x0!==null&&Math.abs(e.clientX-x0)>50){go(i+(e.clientX<x0?1:-1));play()}x0=null});
+ go(0);play();
+})();
+
+/* card spotlight + tilt (mouse only) */
+if(matchMedia("(hover:hover)").matches){
+ document.addEventListener("mousemove",e=>{const c=e.target.closest&&e.target.closest(".pc,.sc,.cc,.ti,.info");if(!c)return;
+  const r=c.getBoundingClientRect();c.style.setProperty("--mx",e.clientX-r.left+"px");c.style.setProperty("--my",e.clientY-r.top+"px");
+  if(c.classList.contains("pc")&&!matchMedia("(prefers-reduced-motion:reduce)").matches){
+   const px=(e.clientX-r.left)/r.width-.5,py=(e.clientY-r.top)/r.height-.5;
+   c.style.transform="perspective(900px) rotateX("+(-py*5)+"deg) rotateY("+(px*5)+"deg) translateY(-6px)"}});
+ $$(".pc").forEach(c=>c.addEventListener("mouseleave",()=>c.style.transform=""));
 }
 
-function closePopup() {
-
-    document.getElementById("successPopup").style.display = "none";
-
-}
-        
-
-    </script>
-
+/* hero network background */
+(function(){
+ const cv=$("#net");if(!cv||matchMedia("(prefers-reduced-motion:reduce)").matches)return;
+ const cx=cv.getContext("2d");let W,H,P=[],vis=true;
+ function size(){W=cv.width=cv.offsetWidth;H=cv.height=cv.offsetHeight;const n=Math.min(55,Math.floor(W*H/22000));P=Array.from({length:n},()=>({x:Math.random()*W,y:Math.random()*H,vx:(Math.random()-.5)*.35,vy:(Math.random()-.5)*.35}))}
+ size();addEventListener("resize",size);
+ new IntersectionObserver(e=>vis=e[0].isIntersecting).observe(cv);
+ (function f(){requestAnimationFrame(f);if(!vis)return;
+  const col=getComputedStyle(root).getPropertyValue("--ac").trim()||"#22d3ee";cx.clearRect(0,0,W,H);cx.fillStyle=col;cx.strokeStyle=col;
+  P.forEach((a,n)=>{a.x+=a.vx;a.y+=a.vy;if(a.x<0||a.x>W)a.vx*=-1;if(a.y<0||a.y>H)a.vy*=-1;
+   cx.globalAlpha=.7;cx.beginPath();cx.arc(a.x,a.y,1.6,0,6.3);cx.fill();
+   for(let m=n+1;m<P.length;m++){const b=P[m],d=Math.hypot(a.x-b.x,a.y-b.y);if(d<130){cx.globalAlpha=(1-d/130)*.22;cx.beginPath();cx.moveTo(a.x,a.y);cx.lineTo(b.x,b.y);cx.stroke()}}})})();
+})();
+</script>
 </body>
-
 </html>
